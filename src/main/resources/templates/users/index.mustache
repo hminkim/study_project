@@ -17,11 +17,13 @@
             </tr>
         </thead>
         <tbody>
+        <! -- 이건 Thymeleaf 문법이므로, 이후에 변경해야 함
             <tr th:each="user : ${users}">
                 <td th:text="${user.userName}"></td>
                 <td th:text="${user.userId}"></td>
                 <td th:text="${user.userPw}"></td>
             </tr>
+        !-->
         </tbody>
     </table>
 </body>
