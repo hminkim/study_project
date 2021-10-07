@@ -5,25 +5,26 @@
     <title>유저 조회</title>
 </head>
 <body>
-    <h1>
-        현재 가입한 유저 조회
-    </h1>
-    <table>
-        <thead>
-            <tr>
-                <th>이름</th>
-                <th>ID</th>
-                <th>PW</th>
-            </tr>
+    <h1> 현재 가입한 유저 조회 </h1>
+
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>회원 번호</th>>
+            <th>이름</th>
+            <th>ID</th>
+            <th>PW</th>
+        </tr>
         </thead>
-        <tbody>
-        <! -- 이건 Thymeleaf 문법이므로, 이후에 변경해야 함
-            <tr th:each="user : ${users}">
-                <td th:text="${user.userName}"></td>
-                <td th:text="${user.userId}"></td>
-                <td th:text="${user.userPw}"></td>
+        <tbody id="tbody">
+        {{#users}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{userName}}</td>
+                <td>{{userId}}</td>
+                <td>{{userPw}}</td>
             </tr>
-        !-->
+        {{/users}}
         </tbody>
     </table>
 </body>
