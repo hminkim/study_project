@@ -2,7 +2,7 @@
 
 매주 스터디를 위한 실습용 레포지토리
 
-스터디 팀원 조수현의 레포지토리 참고
+스터디 팀원 조수현의 레포지토리 참고  
 [LemonDouble/Spring_sample_Simple_Forum](https://github.com/LemonDouble/Spring_sample_Simple_Forum)
 
 ---
