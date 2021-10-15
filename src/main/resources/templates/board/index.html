@@ -6,10 +6,9 @@
 </head>
 <body>
 <h1> 현재 작성되어 있는 모든 포스트 </h1>
-<table border = "0.8">
+<table border = "1">
     <thead>
     <tr>
-        <th>글 번호</th>
         <th>작성자</th>
         <th>제목</th>
         <th>내용</th>
@@ -18,7 +17,6 @@
     </thead>
     <tbody>
     <tr th:each="post : ${board}">
-        <td th:text="${post.id}+1" ></td>
         <td th:text="${post.userId}" ></td>
         <td th:text="${post.title}"></td>
         <td th:text="${post.content}"></td>

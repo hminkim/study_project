@@ -37,8 +37,8 @@ public class BoardController {
     }
 
     @PostMapping("/save")
-    public String savePosts(@RequestParam Long id, @RequestParam String userId, @RequestParam String title, @RequestParam String content) {
-        Post post = new Post(id, userId, title, content);
+    public String savePosts(@RequestParam String userId, @RequestParam String title, @RequestParam String content) {
+        Post post = new Post(userId, title, content);
 
         boardService.savePost(post);
 
@@ -52,7 +52,7 @@ public class BoardController {
         model.addAttribute("users", allUser);
 
         if (post.isPresent()) {
-            model.addAttribute("board", post.get());
+            model.addAttribute("post", post.get());
             return "/board/modify_delete";
         }
         else {
@@ -61,10 +61,10 @@ public class BoardController {
     }
 
     @PostMapping("/modify")
-    public String modifyPost(@RequestParam Long id, @RequestParam String userId, @RequestParam String title, @RequestParam String content){
+    public String modifyPost(@RequestParam Long postId, @RequestParam String userId, @RequestParam String title, @RequestParam String content){
 
-        Post modifyPost = new Post(id, userId, title, content);
-        boardService.modifyPost(id, modifyPost);
+        Post modifyPost = new Post(userId, title, content);
+        boardService.modifyPost(postId, modifyPost);
 
         return "redirect:/board/index";
     }
