@@ -61,7 +61,7 @@ public class BoardController {
     }
 
     @PostMapping("/modify")
-    public String modifyPost(@RequestParam Long postId, @RequestParam String userId, @RequestParam String title, @RequestParam String content){
+    public String modifyPost(@RequestParam Long postId, @RequestParam String userId, @RequestParam String title, @RequestParam String content) {
 
         Post modifyPost = new Post(userId, title, content);
         boardService.modifyPost(postId, modifyPost);
@@ -70,7 +70,7 @@ public class BoardController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deletePost(@PathVariable Long id){
+    public String deletePost(@PathVariable Long id) {
         boardService.deletePost(id);
 
         return "redirect:/board/index";
