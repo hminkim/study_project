@@ -2,11 +2,8 @@ package study.study_project.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import study.study_project.domain.User;
 import study.study_project.service.UserService;
 
@@ -20,7 +17,8 @@ public class UserController {
 
     @GetMapping("/register")
     public String showRegister(){
-        return "/users/register";
+
+        return "users/register";
     }
 
     @PostMapping("/register")
@@ -38,6 +36,6 @@ public class UserController {
         List<User> allUser = userService.findAll();
         model.addAttribute("users", allUser);
 
-        return "/users/index";
+        return "users/index";
     }
 }

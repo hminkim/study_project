@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> 현재 작성되어 있는 모든 포스트 </h1>
+<table border = "0.8">
+    <thead>
+    <tr>
+        <th>글 번호</th>
+        <th>작성자</th>
+        <th>제목</th>
+        <th>내용</th>
+        <th>수정버튼</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="post : ${board}">
+        <td th:text="${post.id}+1" ></td>
+        <td th:text="${post.userId}" ></td>
+        <td th:text="${post.title}"></td>
+        <td th:text="${post.content}"></td>
+        <td><a th:href="@{'/board/' + ${post.id}}">수정 / 삭제</a></td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<a href="/">돌아가기</a>
+</body>
+</html>
