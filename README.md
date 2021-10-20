@@ -14,7 +14,7 @@
 ## Project 1
 
 ---
-[HISTORY]()
+[HISTORY](https://github.com/hminkim/study_project/blob/master/history/Chapter%201.md)
 - 평문으로 회원가입 후 메모리에 유저 정보 저장
 - 유저 회원가입 후 게시판 글쓰기 기능 구현
 - 메모리에 유저가 업로드 한 포스트 정보 저장
