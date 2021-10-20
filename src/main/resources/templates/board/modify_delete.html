@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>글 수정</title>
 </head>
-<body>
+<body th:align="center">
 <h1> 글 수정 및 삭제 창 </h1>
 <form method="post" action="/board/modify">
     <input type ="hidden" id="postId" name="postId"  th:value="${post.id}">
