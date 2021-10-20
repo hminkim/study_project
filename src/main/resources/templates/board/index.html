@@ -16,8 +16,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="post : ${board}">
-        <td th:text="${post.userId}" ></td>
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.id}" ></td>
         <td th:text="${post.title}"></td>
         <td th:text="${post.content}"></td>
         <td><a th:href="@{'/board/' + ${post.id}}">수정 / 삭제</a></td>

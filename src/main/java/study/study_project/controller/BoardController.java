@@ -23,7 +23,7 @@ public class BoardController {
     @GetMapping("/index")
     public String showPosts(Model model) {
         List<Post> allPosts = boardService.findAll();
-        model.addAttribute("board", allPosts);
+        model.addAttribute("posts", allPosts);
 
         return "/board/index";
     }
@@ -39,7 +39,7 @@ public class BoardController {
     @PostMapping("/save")
     public String savePosts(@RequestParam String userId, @RequestParam String title, @RequestParam String content) {
         Post post = new Post(userId, title, content);
-
+        System.out.println("post = " + post);
         boardService.savePost(post);
 
         return "redirect:/board/index";
