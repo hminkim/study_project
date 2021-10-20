@@ -19,5 +19,5 @@
 ---
 
 #### 스터디원 레포지토리
-[LemonDouble](https://github.com/LemonDouble/Spring_sample_Simple_Forum)  
-[dogyun-k](https://github.com/dogyun-k/SpringStudyProject)  
+조수현 : [LemonDouble](https://github.com/LemonDouble/Spring_sample_Simple_Forum)  
+김도균 : [dogyun-k](https://github.com/dogyun-k/SpringStudyProject)  
