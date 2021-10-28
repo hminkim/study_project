@@ -1,6 +1,5 @@
 package study.study_project.repository;
 
-
 import org.springframework.stereotype.Component;
 import study.study_project.domain.Post;
 
@@ -14,15 +13,15 @@ public class MemoryBoardRepository implements BoardRepository{
 
     @Override
     public Post save(Post post) {
-        post.setId(sequence);
-        store.put(post.getId(), post);
+        post.setSeq(sequence);
+        store.put(post.getSeq(), post);
         sequence++;
         return post;
     }
 
     @Override
-    public Optional<Post> findById(Long id) {
-        return Optional.ofNullable(store.get(id));
+    public Optional<Post> findOne(Long seq) {
+        return Optional.ofNullable(store.get(seq));
     }
 
     @Override
@@ -31,25 +30,25 @@ public class MemoryBoardRepository implements BoardRepository{
     }
 
     @Override
-    public Post modify(Long id, Post post) {
-        validPost(id); // 수정할 글 있는지 검증
-        post.setId(id);
-        store.put(id, post);
+    public Post modify(Long seq, Post post) {
+        validPost(seq); // 수정할 글 있는지 검증
+        post.setSeq(seq);
+        store.put(seq, post);
 
         return post;
     }
 
     @Override
-    public Post delete(Long id) {
-        validPost(id);
-        Post post = store.get(id);
-        store.remove(id);
+    public Post delete(Long seq) {
+        validPost(seq);
+        Post post = store.get(seq);
+        store.remove(seq);
 
         return post;
     }
 
-    public void validPost(Long id){
-        if(id >= sequence){
+    public void validPost(Long seq){
+        if(seq >= sequence){
             throw new IllegalStateException("존재하지 않는 POST 입니다.");
         }
     }

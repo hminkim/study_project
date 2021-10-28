@@ -4,14 +4,15 @@ import lombok.Data;
 
 @Data
 public class Post {
-    private Long id;
+    private Long seq;
 
-    private String userId;
     private String title;
     private String content;
+    private Long userSeq;
 
-    public Post(String userId, String title, String content) {
-        this.userId = userId;
+
+    public Post(Long userSeq, String title, String content) {
+        this.userSeq = userSeq;
         this.title = title;
         this.content = content;
     }

@@ -7,23 +7,23 @@
 <body th:align="center">
 <h1> 글 수정 및 삭제 창 </h1>
 <form method="post" action="/board/modify">
-    <input type ="hidden" id="postId" name="postId"  th:value="${post.id}">
+    <input type ="hidden" id="postId" name="postId" th:value="${posts.seq}">
     <label for="userId"> 작성자 :</label>
     <select name="userId" id="userId">
         <option value="">작성자를 선택해주세요</option>
-        <option th:each="user: ${users}" th:value="${user.id}" th:text="${user.userId}" th:selected="${user.id.equals(post.id)}" ></option>
+        <option th:each="user: ${users}" th:value="${users.seq}" th:text="${users.userId}" th:selected="${users.seq}" ></option>
     </select><br>
     <br>
     <label for="title"> Title :</label>
-    <input type="text" name="title" id="title" th:value = "${post.title}"><br>
+    <input type="text" name="title" id="title" th:value = "${posts.title}"><br>
     <br>
     <label for="content"> Content :</label><br>
-    <input type="text" name="content" id="content" th:value ="${post.content}"> <br>
+    <input type="text" name="content" id="content" th:value ="${posts.content}"> <br>
     <br>
     <input type="submit" value="수정"><br>
 </form>
 <br>
-<a th:href="@{'/board/delete/' + ${post.id}}">글 삭제</a>
+<a th:href="@{'/board/delete/' + ${posts.seq}}">글 삭제</a>
 <br>
 <br>
 <a href="/">돌아가기</a>

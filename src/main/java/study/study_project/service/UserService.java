@@ -20,15 +20,15 @@ public class UserService {
 
     public Long register(User user){
         userRepository.save(user);
-        return user.getId();
-    }
-
-    public Optional<User> findOne(Long id){
-        return userRepository.findOne(id);
+        return user.getSeq();
     }
 
     public List<User> findAll(){
         return userRepository.findAll();
+    }
+
+    public User findOne(Long seq){
+        return (userRepository.findOne(seq));
     }
 
 }

@@ -13,15 +13,14 @@ public class MemoryUserRepository implements UserRepository{
 
     @Override
     public User save(User user) {
-        user.setId(sequence);
+        user.setSeq(sequence);
+        store.put(user.getSeq(), user);
         sequence++;
-
-        store.put(user.getId(), user);
         return user;
     }
 
-    public Optional<User> findOne(Long id){
-        return Optional.ofNullable(store.get(id));
+    public User findOne(Long seq){
+        return store.get(seq);
     }
 
     public List<User> findAll(){

@@ -13,15 +13,15 @@ import java.util.Optional;
 public class BoardService {
     private final BoardRepository boardRepository;
 
-    // Post 받아서 저장하고, 해당 Post의 ID 리턴
+    // Post를 받아서 저장하고, 해당 Post의 id 리턴
     public Long savePost(Post post){
         boardRepository.save(post);
-        return post.getId();
+        return post.getSeq();
     }
 
-    // ID를 주면 해당 글 조회
-    public Optional<Post> findOne(Long id){
-        return (boardRepository.findById(id));
+    // Post의 id를 주면 해당 글 조회
+    public Optional<Post> findOne(Long Seq){
+        return (boardRepository.findOne(Seq));
     }
 
     // 모든 글 조회
@@ -30,14 +30,14 @@ public class BoardService {
     }
 
     // 글 수정, 수정할 글 id와 수정 내용 받아 바꾼다.
-    public Long modifyPost(Long id, Post post){
-        Post modify = boardRepository.modify(id, post);
-        return modify.getId();
+    public Long modifyPost(Long seq, Post post){
+        Post modify = boardRepository.modify(seq, post);
+        return modify.getSeq();
     }
 
-    public Long deletePost(Long id){
-        Post deleted = boardRepository.delete(id);
-        return deleted.getId();
+    public Long deletePost(Long seq){
+        Post deleted = boardRepository.delete(seq);
+        return deleted.getSeq();
     }
 
 

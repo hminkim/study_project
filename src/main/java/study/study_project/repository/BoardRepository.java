@@ -7,8 +7,8 @@ import java.util.Optional;
 
 public interface BoardRepository {
     Post save(Post post);
-    Optional<Post> findById(Long id);
+    Optional<Post> findOne(Long seq);
     List<Post> findAll();
-    Post modify(Long id, Post post);
-    Post delete(Long id);
+    Post modify(Long seq, Post post);
+    Post delete(Long seq);
 }

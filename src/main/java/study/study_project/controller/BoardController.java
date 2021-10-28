@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 import study.study_project.domain.Post;
 import study.study_project.domain.User;
+import study.study_project.domain.titleForPost;
 import study.study_project.service.BoardService;
 import study.study_project.service.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +25,23 @@ public class BoardController {
     @GetMapping("/index")
     public String showPosts(Model model) {
         List<Post> allPosts = boardService.findAll();
-        model.addAttribute("posts", allPosts);
+        List<titleForPost> titleForPosts = new ArrayList<>();
+
+        for(int i = 0 ; i < allPosts.size() ; i++) {
+            Post currentPost = allPosts.get(i);
+
+            Long userSeq = currentPost.getUserSeq();
+            String userId = userService.findOne(userSeq).getUserId();
+            Long seq = currentPost.getSeq();
+            String title = currentPost.getTitle();
+
+            titleForPost currentTitleForPost = new titleForPost(seq,title,userId);
+
+            titleForPosts.add(currentTitleForPost);
+        }
+
+
+        model.addAttribute("titleForPosts", titleForPosts);
 
         return "/board/index";
     }
@@ -37,22 +55,22 @@ public class BoardController {
     }
 
     @PostMapping("/save")
-    public String savePosts(@RequestParam String userId, @RequestParam String title, @RequestParam String content) {
-        Post post = new Post(userId, title, content);
-        System.out.println("post = " + post);
+    public String savePosts(@RequestParam Long userSeq, @RequestParam String title, @RequestParam String content) {
+        User user = userService.findOne(userSeq);
+        Post post = new Post(userSeq, title, content);
         boardService.savePost(post);
 
         return "redirect:/board/index";
     }
 
-    @GetMapping("/{id}")
-    public String showModifyDeleteForm(@PathVariable Long id, Model model) {
-        Optional<Post> post = boardService.findOne(id);
+    @GetMapping("/{seq}")
+    public String showModifyDeleteForm(@PathVariable Long seq, Model model) {
+        Optional<Post> post = boardService.findOne(seq);
         List<User> allUser = userService.findAll();
         model.addAttribute("users", allUser);
 
         if (post.isPresent()) {
-            model.addAttribute("post", post.get());
+            model.addAttribute("posts", post.get());
             return "/board/modify_delete";
         }
         else {
@@ -60,19 +78,20 @@ public class BoardController {
         }
     }
 
-    @PostMapping("/modify")
-    public String modifyPost(@RequestParam Long postId, @RequestParam String userId, @RequestParam String title, @RequestParam String content) {
+    @PostMapping("/modify/{seq}")
+    public String modifyPost(@RequestParam Long userSeq, @RequestParam String title, @RequestParam String content) {
 
-        Post modifyPost = new Post(userId, title, content);
-        boardService.modifyPost(postId, modifyPost);
+        Post modifyPost = new Post(userSeq, title, content);
+        boardService.modifyPost(userSeq, modifyPost);
+
+        return "redirect:/board/index";
+    }
+
+    @GetMapping("/delete/{seq}")
+    public String deletePost(@PathVariable Long seq) {
+        boardService.deletePost(seq);
 
         return "redirect:/board/index";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deletePost(@PathVariable Long id) {
-        boardService.deletePost(id);
-
-        return "redirect:/board/index";
-    }
 }
