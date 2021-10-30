@@ -49,14 +49,9 @@ public class BoardController {
     @GetMapping("/post")
     public String showModifyDeleteForm(@RequestParam Long postSeq, Model model) {
         Optional<Post> post = boardService.findOne(postSeq);
+        model.addAttribute("onePost", post.get());
 
-        if (post.isPresent()) {
-            model.addAttribute("posts", post.get());
-            return "/board/modify_delete";
-        }
-        else {
-            return "redirect:/board/index";
-        }
+        return "board/post";
     }
 
     @PostMapping("/modify/{seq}")

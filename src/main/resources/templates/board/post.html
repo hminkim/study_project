@@ -16,11 +16,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="post : ${posts}">
+    <tr th:each="post : ${onePost}">
         <td th:text="${post.seq}" ></td>
         <td th:text="${post.title}" ></td>
         <td th:text="${post.user.userId}"></td>
-        <td th:text="${post.user.userId}"></td>
+        <td th:text="${post.content}"></td>
     </tr>
     </tbody>
 </table>
