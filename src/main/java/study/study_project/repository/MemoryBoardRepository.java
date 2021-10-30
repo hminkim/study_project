@@ -6,7 +6,7 @@ import study.study_project.domain.Post;
 import java.util.*;
 
 @Component
-public class MemoryBoardRepository implements BoardRepository{
+public class MemoryBoardRepository implements BoardRepository {
 
     private Map<Long, Post> store = new HashMap<>();
     private Long sequence = 0L;
@@ -47,8 +47,8 @@ public class MemoryBoardRepository implements BoardRepository{
         return post;
     }
 
-    public void validPost(Long seq){
-        if(seq >= sequence){
+    public void validPost(Long seq) {
+        if (seq >= sequence) {
             throw new IllegalStateException("존재하지 않는 POST 입니다.");
         }
     }

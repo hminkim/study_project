@@ -8,12 +8,12 @@ public class Post {
 
     private String title;
     private String content;
-    private Long userSeq;
+    private User user;
 
 
-    public Post(Long userSeq, String title, String content) {
-        this.userSeq = userSeq;
+    public Post(String title, String content, User user) {
         this.title = title;
         this.content = content;
+        this.user = user;
     }
 }
